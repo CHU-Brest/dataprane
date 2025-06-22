@@ -4,10 +4,10 @@
 
 main:
   - name: Publier un billet
-    url: https://www.google.fr
+    url: /publier
 
   - name: Github
-    url: https://www.google.fr
+    url: https://github.com/CHU-Brest/dataprane
     
 #     weight: 10
   # - name: Features
