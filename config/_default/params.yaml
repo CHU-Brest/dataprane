@@ -62,12 +62,12 @@ locale:
 
 features:
   comment:
-    provider: ''
+    provider: 'giscus'
     giscus:
-      repo: 'https://github.com/CHU-Brest/dataprane'
-      repo_id: ''
-      category: ''
-      category_id: ''
-      theme: preferred_color_scheme
+      repo: 'CHU-BREST/dataprane'
+      repo_id: 'R_kgDOO_6aOw'
+      category: 'Announcements'
+      category_id: 'DIC_kwDOO_6aO84Cr2F-'
+      theme: light
       language_code: en
       mapping: pathname
