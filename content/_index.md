@@ -28,7 +28,7 @@ sections:
       view: article-grid
       text_color_light: false
       # Choose your content listing view - here we use the `showcase` view
-      columns: '2'
+      columns: '1'
       # For the Showcase view, do you want to flip alternate rows?
       flip_alt_rows: true
 
