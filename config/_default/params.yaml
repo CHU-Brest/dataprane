@@ -9,22 +9,21 @@ appearance:
   color: zinc
 
 # SEO
-# marketing:
-#   seo:
-#     site_type: Person
-#     local_business_type: ''
-#     org_name: ''
-#     description: 'A highly-customizable Hugo landing page theme powered by Hugo Blox website builder.'
-#     twitter: 'GetResearchDev'
-#   analytics:
-#     google_analytics: ''
-#     baidu_tongji: ''
-#     plausible: ''
-#     fathom: ''
-#     pirsch: ''
-#   verification:
-#     google: ''
-#     baidu: ''
+marketing:
+  seo:
+    site_type:  MedicalOrganization
+    org_name: 'Dataprane'
+    description: 'Le blog de la datascience en santé'
+    twitter: 'dridk'
+  # analytics:
+  #   google_analytics: ''
+  #   baidu_tongji: ''
+  #   plausible: ''
+  #   fathom: ''
+  #   pirsch: ''
+  # verification:
+  #   google: ''
+  #   baidu: ''
 
 # Site header
 header:
