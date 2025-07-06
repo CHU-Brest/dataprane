@@ -34,7 +34,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 Vous pouvez alors télécharger différents modèles en fonction de la mémoire de votre carte graphique.
 
-Par exemple, sur mon PC équipé d’une GeForce RTX 3060 avec 12 Go de VRAM, je peux faire tourner le modèle [deepseek-coder:1.14b](https://ollama.com/library/deepseek-r1) que je lance avec une simple commande :
+Par exemple, sur mon PC équipé d’une GeForce RTX 3060 avec 12 Go de VRAM, je peux faire tourner le modèle [deepseek-r1:14b](https://ollama.com/library/deepseek-r1) que je lance avec une simple commande :
 
 ```bash
 ollama run deepseek-r1:14b
