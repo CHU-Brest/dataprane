@@ -20,7 +20,7 @@ La nécessité d'interpréter le contexte rend la recherche sur texte libre trè
 
 Dans ce billet, nous allons explorer comment les modèles de langage et la librairie **[DSPy](https://dspy.ai/)** peuvent nous aider à affiner ces recherches de manière plus intelligente et contextuelle.
 
-## Un modèle de language local
+## Un modèle de langage local
 
 Le principal défi avec les données de santé, c’est qu’elles sont hautement sensibles. Il est donc hors de question d’utiliser des modèles de langage en ligne comme [ChatGPT](https://openai.com/index/chatgpt/) ou [Claude.ai](https://claude.ai/), qui impliqueraient l’envoi de données vers des serveurs externes.
 
