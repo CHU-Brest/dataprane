@@ -1,5 +1,5 @@
 ---
-title: Extraire des conceptes médicaux et leurs contextes
+title: Extraire des concepts médicaux et leurs contextes
 date: 2025-07-06
 commentable: true
 tags: [dspy,llm]
