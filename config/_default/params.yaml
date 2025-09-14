@@ -47,7 +47,7 @@ header:
 footer:
   block: minimal
   copyright:
-    notice: 'Réalisé par le CHU Brest'
+    notice: ''
     license:
       enable: True
       allow_commercial: false
