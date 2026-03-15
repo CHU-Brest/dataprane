@@ -5,9 +5,15 @@
     <!-- ── Colonne principale : liste des articles ── -->
     <section>
       {{ $paginator := .Paginate (where site.RegularPages "Type" "posts") }}
+
+      <div class="feed-header">
+        <span class="feed-label">Derniers billets</span>
+        <span class="feed-stat">{{ $paginator.TotalNumberOfElements }} articles</span>
+      </div>
+
       <div class="post-list">
-        {{ range $paginator.Pages }}
-          {{ partial "post-card.html" . }}
+        {{ range $i, $page := $paginator.Pages }}
+          {{ partial "post-card.html" (dict "index" $i "page" $page) }}
         {{ end }}
       </div>
 

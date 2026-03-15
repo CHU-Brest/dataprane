@@ -1,40 +1,41 @@
-<article class="post-card">
-  <div class="post-card-content">
-    <!-- Category -->
-    {{ with .Params.categories }}
-      <div class="post-card-category">{{ index . 0 }}</div>
-    {{ end }}
+{{- $index := .index -}}
+{{- $page  := .page  -}}
 
-    <!-- Title -->
-    <h2 class="post-card-title">
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </h2>
+<a href="{{ $page.RelPermalink }}" class="post-card{{ if eq $index 0 }} post-card--hero{{ else }} post-card--item{{ end }}">
 
-    <!-- Summary -->
-    <p class="post-card-summary">{{ .Summary | plainify | truncate 180 }}</p>
-
-    <!-- Meta -->
-    <div class="post-meta">
-      {{ with .Params.authors }}
-        <span style="font-weight:500;color:var(--color-text);">{{ index . 0 }}</span>
-        <span class="post-meta-dot"></span>
-      {{ end }}
-      <time datetime="{{ .Date | time.Format `2006-01-02` }}">
-        {{ .Date | time.Format "2 Jan 2006" }}
-      </time>
-      <span class="post-meta-dot"></span>
-      <span>{{ .ReadingTime }} min</span>
-      {{ with .Params.tags }}
-        <span class="post-meta-dot"></span>
-        {{ range first 2 . }}
-          <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">{{ . }}</a>
-        {{ end }}
-      {{ end }}
-    </div>
+  <div class="post-card-eyebrow">
+    {{- with $page.Params.categories }}
+      <span class="post-card-category">{{ index . 0 }}</span>
+      <span class="post-card-sep">·</span>
+    {{- else }}{{- with $page.Params.tags }}
+      <span class="post-card-category">{{ index . 0 }}</span>
+      <span class="post-card-sep">·</span>
+    {{- end }}{{- end }}
+    <time class="post-card-date" datetime="{{ $page.Date | time.Format `2006-01-02` }}">
+      {{- $page.Date | time.Format "2 Jan 2006" -}}
+    </time>
+    <span class="post-card-sep">·</span>
+    <span class="post-card-reading">{{ $page.ReadingTime }} min</span>
   </div>
 
-  <!-- Thumbnail -->
-  {{ with .Params.image }}
-    <img src="{{ . }}" alt="{{ $.Title }}" class="post-card-thumb">
-  {{ end }}
-</article>
+  <div class="post-card-title">{{ $page.Title }}</div>
+
+  <div class="post-card-summary">{{ $page.Summary | plainify | truncate 200 }}</div>
+
+  <div class="post-card-footer">
+    {{ with $page.Params.authors }}
+      <span class="post-card-author">{{ index . 0 }}</span>
+    {{ else }}
+      <span></span>
+    {{ end }}
+
+    {{ with $page.Params.tags }}
+      <div class="post-card-tags">
+        {{ range first 3 . }}
+          <span class="tag-badge">{{ . }}</span>
+        {{ end }}
+      </div>
+    {{ end }}
+  </div>
+
+</a>
