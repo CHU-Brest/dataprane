@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="site-main">
+  <div class="home-layout">
+    <section>
+      <h1 style="font-size:1.5rem;font-weight:800;margin-bottom:1.5rem;">{{ .Title }}</h1>
+      <div class="post-list">
+        {{ range .Pages }}
+          {{ partial "post-card.html" . }}
+        {{ end }}
+      </div>
+    </section>
+    <aside class="sidebar">
+      {{ partial "sidebar.html" . }}
+    </aside>
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,51 @@
+{{ define "main" }}
+<div class="article-layout">
+  <article>
+    <header class="article-header">
+      <!-- Categories -->
+      {{ with .Params.categories }}
+        <div style="margin-bottom:0.75rem;">
+          {{ range . }}
+            <a href="{{ "/categories/" | relURL }}{{ . | urlize }}" class="post-card-category">{{ . }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <h1 class="article-title">{{ .Title }}</h1>
+
+      <div class="post-meta" style="gap:1rem;display:flex;align-items:center;flex-wrap:wrap;">
+        {{ with .Params.authors }}
+          {{ range . }}
+            <span style="display:flex;align-items:center;gap:0.4rem;font-weight:500;color:var(--color-text);">
+              {{ . }}
+            </span>
+          {{ end }}
+        {{ end }}
+        <span class="post-meta-dot">
+          <time datetime="{{ .Date | time.Format `2006-01-02T15:04:05-07:00` }}">
+            {{ .Date | time.Format ":date_long" }}
+          </time>
+        </span>
+        <span class="post-meta-dot">{{ .ReadingTime }} min de lecture</span>
+      </div>
+    </header>
+
+    {{ with .Params.image }}
+      <img src="{{ . }}" alt="{{ $.Title }}" style="width:100%;border-radius:10px;margin-bottom:2rem;max-height:400px;object-fit:cover;">
+    {{ end }}
+
+    <div class="article-body">
+      {{ .Content }}
+    </div>
+
+    <!-- Tags -->
+    {{ with .Params.tags }}
+      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--color-border);display:flex;flex-wrap:wrap;gap:0.5rem;">
+        {{ range . }}
+          <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">{{ . }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
+  </article>
+</div>
+{{ end }}
