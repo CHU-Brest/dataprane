@@ -1,0 +1,64 @@
+<!-- ── Catégories ── -->
+{{ $categories := site.Taxonomies.categories }}
+{{ if $categories }}
+<div class="sidebar-section">
+  <h3 class="sidebar-section-title">Catégories</h3>
+  <ul class="category-list">
+    {{ range $categories.ByCount }}
+      <li class="category-item">
+        <a href="{{ .Page.RelPermalink }}">
+          <span>{{ .Page.Title }}</span>
+          <span class="category-count">{{ .Count }}</span>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}
+
+<!-- ── Tags ── -->
+{{ $tags := site.Taxonomies.tags }}
+{{ if $tags }}
+<div class="sidebar-section">
+  <h3 class="sidebar-section-title">Tags</h3>
+  <div class="tag-cloud">
+    {{ range $tags.ByCount }}
+      <a href="{{ .Page.RelPermalink }}" class="tag-pill">{{ .Page.Title }}</a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
+
+<!-- ── Auteurs ── -->
+{{ $authors := site.Taxonomies.authors }}
+{{ if $authors }}
+<div class="sidebar-section">
+  <h3 class="sidebar-section-title">Auteurs</h3>
+  <ul class="author-list">
+    {{ range $authors.ByCount }}
+      <li class="author-item">
+        <a href="{{ .Page.RelPermalink }}">
+          {{- $avatar := "/images/default-avatar.svg" -}}
+          {{- with .Page.File -}}
+            {{- $avatarPath := printf "content/authors/%s/avatar.jpeg" (path.Base .Dir) -}}
+            {{- if fileExists $avatarPath -}}
+              {{- $avatar = printf "/authors/%s/avatar.jpeg" (path.Base .Dir) -}}
+            {{- end -}}
+          {{- end -}}
+          <img
+            src="{{ $avatar }}"
+            alt="{{ .Page.Title }}"
+            class="author-avatar"
+          >
+          <div>
+            <div class="author-name">{{ .Page.Title }}</div>
+            {{ with .Page.Params.role }}
+              <div class="author-role">{{ . }}</div>
+            {{ end }}
+          </div>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

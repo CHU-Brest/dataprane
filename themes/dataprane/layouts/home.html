@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class="site-main">
+  <div class="home-layout">
+
+    <!-- ── Colonne principale : liste des articles ── -->
+    <section>
+      {{ $paginator := .Paginate (where site.RegularPages "Type" "posts") }}
+
+      <div class="feed-header">
+        <span class="feed-label">Derniers billets</span>
+        <span class="feed-stat">{{ $paginator.TotalNumberOfElements }} articles</span>
+      </div>
+
+      <div class="post-list">
+        {{ range $i, $page := $paginator.Pages }}
+          {{ partial "post-card.html" (dict "index" $i "page" $page) }}
+        {{ end }}
+      </div>
+
+      {{ template "_internal/pagination.html" . }}
+    </section>
+
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar">
+      {{ partial "sidebar.html" . }}
+    </aside>
+
+  </div>
+</div>
+{{ end }}

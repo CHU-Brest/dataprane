@@ -1,0 +1,65 @@
+{{ define "main" }}
+<div class="article-layout">
+  <article>
+    <header class="article-header">
+      <!-- Categories -->
+      {{ with .Params.categories }}
+        <div style="margin-bottom:0.75rem;">
+          {{ range . }}
+            <a href="{{ "/categories/" | relURL }}{{ . | urlize }}" class="post-card-category">{{ . }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <h1 class="article-title">{{ .Title }}</h1>
+
+      <div class="post-meta" style="gap:1rem;display:flex;align-items:center;flex-wrap:wrap;">
+        {{ with .Params.authors }}
+          {{ range . }}
+            <span style="display:flex;align-items:center;gap:0.4rem;font-weight:500;color:var(--color-text);">
+              {{ . }}
+            </span>
+          {{ end }}
+        {{ end }}
+        <span class="post-meta-dot">
+          <time datetime="{{ .Date | time.Format `2006-01-02T15:04:05-07:00` }}">
+            {{ .Date | time.Format ":date_long" }}
+          </time>
+        </span>
+        <span class="post-meta-dot">{{ .ReadingTime }} min de lecture</span>
+        {{ with site.Params.githubRepo }}
+          <a href="{{ . }}/blob/main/content/{{ $.File.Path }}"
+             target="_blank" rel="noopener"
+             style="margin-left:auto;display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8125rem;color:var(--color-muted);border:1px solid var(--color-border);padding:0.3rem 0.625rem;transition:color 0.15s,border-color 0.15s;"
+             onmouseover="this.style.color='var(--color-text)';this.style.borderColor='var(--color-text)'"
+             onmouseout="this.style.color='var(--color-muted)';this.style.borderColor='var(--color-border)'">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            Modifier
+          </a>
+        {{ end }}
+      </div>
+    </header>
+
+    {{ with .Params.image }}
+      <img src="{{ . }}" alt="{{ $.Title }}" style="width:100%;border-radius:10px;margin-bottom:2rem;max-height:400px;object-fit:cover;">
+    {{ end }}
+
+    <div class="article-body">
+      {{ .Content }}
+    </div>
+
+    <!-- Tags -->
+    {{ with .Params.tags }}
+      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--color-border);display:flex;flex-wrap:wrap;gap:0.5rem;">
+        {{ range . }}
+          <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag-pill">{{ . }}</a>
+        {{ end }}
+      </div>
+    {{ end }}
+
+  </article>
+</div>
+{{ end }}

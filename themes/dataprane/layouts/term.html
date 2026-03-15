@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="site-main">
+  <div class="home-layout">
+    <section>
+      <h1 class="section-title">{{ .Title }}</h1>
+      <div class="post-list">
+        {{ range $i, $page := .Pages }}
+          {{ partial "post-card.html" (dict "index" $i "page" $page) }}
+        {{ end }}
+      </div>
+    </section>
+    <aside class="sidebar">
+      {{ partial "sidebar.html" . }}
+    </aside>
+  </div>
+</div>
+{{ end }}
