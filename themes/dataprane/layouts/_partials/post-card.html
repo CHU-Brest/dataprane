@@ -3,39 +3,47 @@
 
 <a href="{{ $page.RelPermalink }}" class="post-card{{ if eq $index 0 }} post-card--hero{{ else }} post-card--item{{ end }}">
 
-  <div class="post-card-eyebrow">
-    {{- with $page.Params.categories }}
-      <span class="post-card-category">{{ index . 0 }}</span>
-      <span class="post-card-sep">·</span>
-    {{- else }}{{- with $page.Params.tags }}
-      <span class="post-card-category">{{ index . 0 }}</span>
-      <span class="post-card-sep">·</span>
-    {{- end }}{{- end }}
-    <time class="post-card-date" datetime="{{ $page.Date | time.Format `2006-01-02` }}">
-      {{- $page.Date | time.Format "2 Jan 2006" -}}
-    </time>
-    <span class="post-card-sep">·</span>
-    <span class="post-card-reading">{{ $page.ReadingTime }} min</span>
+  <div class="post-card-body">
+
+    <!-- Ligne auteur + meta (style Medium) -->
+    <div class="post-card-byline">
+      {{- with $page.Params.authors }}
+        <span class="post-card-byline-author">{{ index . 0 }}</span>
+        <span class="post-card-byline-sep">·</span>
+      {{- end }}
+      <time datetime="{{ $page.Date | time.Format `2006-01-02` }}">
+        {{- $page.Date | time.Format "2 Jan 2006" -}}
+      </time>
+      <span class="post-card-byline-sep">·</span>
+      <span>{{ $page.ReadingTime }} min de lecture</span>
+    </div>
+
+    <!-- Titre + résumé -->
+    <div class="post-card-text">
+      <h2 class="post-card-title">{{ $page.Title }}</h2>
+      <p class="post-card-summary">{{ $page.Summary | plainify | truncate 200 }}</p>
+    </div>
+
+    <!-- Footer : catégorie + tags -->
+    <div class="post-card-footer">
+      {{- with $page.Params.categories }}
+        <span class="post-card-category">{{ index . 0 }}</span>
+      {{- end }}
+      {{ with $page.Params.tags }}
+        <div class="post-card-tags">
+          {{ range first 3 . }}
+            <span class="tag-badge">{{ . }}</span>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+
   </div>
 
-  <div class="post-card-title">{{ $page.Title }}</div>
-
-  <div class="post-card-summary">{{ $page.Summary | plainify | truncate 200 }}</div>
-
-  <div class="post-card-footer">
-    {{ with $page.Params.authors }}
-      <span class="post-card-author">{{ index . 0 }}</span>
-    {{ else }}
-      <span></span>
-    {{ end }}
-
-    {{ with $page.Params.tags }}
-      <div class="post-card-tags">
-        {{ range first 3 . }}
-          <span class="tag-badge">{{ . }}</span>
-        {{ end }}
-      </div>
-    {{ end }}
-  </div>
+  {{- with $page.Params.image }}
+    <div class="post-card-thumb">
+      <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy">
+    </div>
+  {{- end }}
 
 </a>
