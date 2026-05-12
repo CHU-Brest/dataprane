@@ -8,9 +8,9 @@ paginate = 10
 
 [params]
   description = "Datascience appliquée à la santé"
-  github = "https://github.com/dataprane"
+  github = "https://github.com/CHU-Brest/dataprane"
   githubRepo = "https://github.com/CHU-Brest/dataprane"
-  contribution = "/contribution"
+  contribution = "/publier/"
   author = "Équipe Dataprane"
 
 [taxonomies]
